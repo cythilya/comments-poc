@@ -1,0 +1,19 @@
+.community-app {
+  display: flex;
+  flex-direction: row;
+  height: 99vh;
+
+}
+.community-app {
+  flex: 1;
+}
+
+.channel-list {
+  background-color: var(--bg-0);
+  border-right: 1px solid var(--gray-1);
+}
+
+.community-open-channel {
+  flex: 1;
+  background-color: var(--bg-0);
+}

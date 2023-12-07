@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -35,4 +36,74 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.canvas {
+  width: 60%;
+  height: 700px;
+  border: 1px solid red;
+}
+
+.comments {
+  width: 700px;
+  height: 700px;
+  border: 1px solid blue;
+  background-color: rgb(219, 219, 219)  ;
+}
+
+.hello1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  animation-name: example1;
+  animation-duration: 4s;
+  margin-bottom: 10px;
+}
+
+.hello2 {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  position: relative;
+  animation-name: example2;
+  animation-duration: 4s;
+  margin-bottom: 10px;
+}
+
+@keyframes example1 {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+@keyframes example2 {
+  0%   {background-color:blue; left:200px; top:100px;}
+  25%  {background-color:yellow; left:300px; top:200px;}
+  50%  {background-color:blue; left:400px; top:300px;}
+  75%  {background-color:green; left:300px; top:300px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+.hello-start1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.hello-start2 {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.str-chat__li--single {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
