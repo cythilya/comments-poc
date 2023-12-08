@@ -8,23 +8,16 @@ function LiveBlocksThreads({ currentElementId }) {
       <main>
         {threads.map((thread) => {
           const isCurrentElement = currentElementId === thread.roomId
-          const newThreadData = {
-            ...thread,
-            metadata: {
-              elementId: currentElementId,
-              position: JSON.stringify({x: 100, y: 200}),
-            }
-          }
 
           return isCurrentElement && (
             <Thread 
               autoFocus={true}
               key={thread.id} 
-              thread={newThreadData} 
+              thread={thread} 
               className="thread" 
-              // onResolvedChange={() => {
-              //   console.log('resolved')
-              // }}
+              onResolvedChange={() => {
+                console.log('resolved')
+              }}
             />
           );
         })}

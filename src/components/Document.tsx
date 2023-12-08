@@ -299,8 +299,6 @@ export function Document() {
       endNodeId: endElement.id,
       startOffset,
       endOffset,
-      elementId,
-      position,
     } as const;
     const threadId = crypto.randomUUID();
     addThread(threadId, metadata, 0);

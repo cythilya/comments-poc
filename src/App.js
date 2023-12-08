@@ -18,7 +18,7 @@ const ELEMENT_LIST = { // store in metadata
     endClassName: 'hello-start1',
   },
   'th_5E1V_62ePOlcYMGWEjdbb': {
-    elementID: 'thread.id th_5E1V_62ePOlcYMGWEjdbb',
+    elementID: 'th_5E1V_62ePOlcYMGWEjdbb',
     timestamp: '2023-12-12',
     position: {
       x: 300,
@@ -32,27 +32,7 @@ const ELEMENT_LIST = { // store in metadata
 function App() {
   const [start, setStart] = useState(false);
   const [rooms, setRooms] = useState([]);
-  const [error, setError] = useState(null);
   const [currentElementId, setCurrentElementId] = useState('th_5im7uCmWK9HDN5SovaeFQ');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://api.liveblocks.io/v2/rooms');
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch rooms');
-        }
-
-        const data = await response.json();
-        setRooms(data.data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -85,7 +65,8 @@ function App() {
                 className="composer" 
                 metadata={{
                   elementId: currentElementId,
-                  position: JSON.stringify({x: 100, y: 200}),
+                  position: JSON.stringify(ELEMENT_LIST[currentElementId].position),
+                  timestamp: ELEMENT_LIST[currentElementId].timestamp
                 }}
               /> 
             </RoomProvider>
