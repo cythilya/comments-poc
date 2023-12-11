@@ -31,9 +31,35 @@ const ELEMENT_LIST = { // store in metadata
 
 function App() {
   const [start, setStart] = useState(false);
-  const [rooms, setRooms] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState([]);
   const [currentElementId, setCurrentElementId] = useState('th_5im7uCmWK9HDN5SovaeFQ');
 
+  useEffect(() => {
+    const loadData = async () => {
+
+        try {
+            setLoading(true);
+            const response = await fetch(`https://api.liveblocks.io/v2/rooms/${currentElementId}/storage`, {
+              method:'GET',
+              headers: {
+                Authorization: `Bearer sk_dev_abQ3M8bnDQSfEVUbDuhZgc0XWRZ_x8Hzc7vPcBWOSxTcNG3bzGh1gdkFBOfeQDzC`,
+                "Content-Type": "application/json",                
+              },
+            });
+            const json = await response.json();
+            console.log('json', json);
+            setData(json);
+            setLoading(false);
+        } catch (error) {
+            console.log("error: " + error);
+        }
+    }
+
+    loadData();
+
+}, []);
+  
   return (
     <>
       <div className="App">
@@ -66,16 +92,35 @@ function App() {
                 metadata={{
                   elementId: currentElementId,
                   position: JSON.stringify(ELEMENT_LIST[currentElementId].position),
-                  timestamp: ELEMENT_LIST[currentElementId].timestamp
-                }}
-              /> 
+                  timestamp: ELEMENT_LIST[currentElementId].timestamp // create time === selection kf timestamp
+                }}>
+                <Composer.Form>
+                  <Composer.Editor
+                    components={{
+                      Mention: () => {
+                        console.log('Mention')
+                        return (<Composer.Mention />)
+                      },
+                      MentionSuggestions: () => (
+                        <Composer.Suggestions>
+                          <Composer.SuggestionsList>
+                            <Composer.SuggestionsListItem />
+                          </Composer.SuggestionsList>
+                        </Composer.Suggestions>
+                      ),
+                      Link: () => <Composer.Link />,
+                    }}
+                  />
+                  <Composer.Submit />
+                </Composer.Form>
+              </Composer>
             </RoomProvider>
           </>
-          <ul className="room-list">
+          {/* <ul className="room-list">
             {_map(rooms, (room) => (
               <li key={room.id}>{room.metadata.name}</li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
       <button
